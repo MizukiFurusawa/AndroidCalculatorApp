@@ -12,13 +12,17 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_weight="0.2"
+            android:id="@+id/resultText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:background="#4c4c4c"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:paddingLeft="15dp"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
 
         <include
             layout="@layout/ten_key"
