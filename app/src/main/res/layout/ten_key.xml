@@ -161,7 +161,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/actbutton_sub"
+            android:id="@+id/button_sub"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -242,7 +242,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
-            android:layout_weight="0.503"
+            android:layout_weight="0.505"
             android:background="?android:attr/colorButtonNormal"
             android:text="0"
             android:textColor="@android:color/black"
@@ -255,7 +255,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
-            android:layout_weight="0.2485"
+            android:layout_weight="0.2475"
             android:background="?android:attr/colorButtonNormal"
             android:text="."
             android:textColor="@android:color/black"
@@ -267,7 +267,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
-            android:layout_weight="0.2485"
+            android:layout_weight="0.2475"
             android:background="@android:color/holo_orange_dark"
             android:text="="
             android:textColor="@android:color/white"
