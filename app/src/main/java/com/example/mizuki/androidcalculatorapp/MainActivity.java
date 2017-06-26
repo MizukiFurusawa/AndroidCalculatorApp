@@ -16,17 +16,61 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener buttonNumberListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Button button = (Button) view;
-            if (isOperatorKeyPushed == true) {
-                editText.setText(button.getText());
-            } else {
-                editText.append(button.getText());
+            String str = editText.getText().toString();
+            Button button;
+            Button viewButton = (Button) view;
+            double value;
+
+            switch(view.getId()){
+                case R.id.button_dot:
+                    if(str.indexOf(".") == -1){
+                        editText.append(viewButton.getText());
+                    }
+                    break;
+
+                case R.id.button_clear:
+                    button = (Button)findViewById(R.id.button_clear);
+                    if(button.getText().equals("AC")){
+                        initValue();
+                    }
+                    else if(button.getText().equals("C")){
+                        button.setText("AC");
+                        editText.setText("0");
+                    }
+                    break;
+
+                case R.id.button_add_sub:
+                    value = -1 * Double.parseDouble(str);
+                    editText.setText(String.valueOf(value));
+                    break;
+
+                case R.id.button_percent:
+                    value = Double.parseDouble(str) / 1000;
+                    editText.setText(String.valueOf(value));
+                    break;
+
+                default:
+                    if(str.equals("0")){
+                        editText.setText("");
+                    }
+                    if(isOperatorKeyPushed){
+                        editText.setText(viewButton.getText());
+                        button = (Button)findViewById(R.id.button_clear);
+                        button.setText("C");
+                    }
+                    else {
+                        editText.append(viewButton.getText());
+                    }
+                    break;
             }
             isOperatorKeyPushed = false;
         }
     };
 
+
+
     View.OnClickListener buttonOperatorListener = new View.OnClickListener() {
+
         @Override
         public void onClick(View view) {
             Button operatorButton = (Button) view;
@@ -41,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
             isOperatorKeyPushed = true;
         }
     };
+
+
 
     double calc(int operator, double value1, double value2) {
         switch (operator) {
@@ -57,12 +103,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void initValue(){
         editText.setText("0");
         recentOperator = R.id.button_equal;
         isOperatorKeyPushed = true;
         result = 0.0;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText);
         initValue();
 
-        //0-9 .
+        //0-9 . AC C +/- %
         findViewById(R.id.button_1).setOnClickListener(buttonNumberListener);
         findViewById(R.id.button_2).setOnClickListener(buttonNumberListener);
         findViewById(R.id.button_3).setOnClickListener(buttonNumberListener);
@@ -84,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_9).setOnClickListener(buttonNumberListener);
         findViewById(R.id.button_0).setOnClickListener(buttonNumberListener);
         findViewById(R.id.button_dot).setOnClickListener(buttonNumberListener);
+        findViewById(R.id.button_clear).setOnClickListener(buttonNumberListener);
+        findViewById(R.id.button_add_sub).setOnClickListener(buttonNumberListener);
+        findViewById(R.id.button_percent).setOnClickListener(buttonNumberListener);
 
-        //operator
-        findViewById(R.id.button_clear).setOnClickListener(buttonOperatorListener);
-        findViewById(R.id.button_add_sub).setOnClickListener(buttonOperatorListener);
-        findViewById(R.id.button_percent).setOnClickListener(buttonOperatorListener);
+        // / * + - =
         findViewById(R.id.button_div).setOnClickListener(buttonOperatorListener);
         findViewById(R.id.button_multiply).setOnClickListener(buttonOperatorListener);
         findViewById(R.id.button_sub).setOnClickListener(buttonOperatorListener);
